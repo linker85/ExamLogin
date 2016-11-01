@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                        if (rememberMe.isEnabled()) {
+                        if (rememberMe.isChecked()) {
                             intent.putExtra("rem", "1");
                             editor.putString("rem", "1");
                         } else {
