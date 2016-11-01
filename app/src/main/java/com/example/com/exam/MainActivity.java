@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
         String rem = null;
         String defaultValue = null;
         try {
-            rem = getIntent().getStringExtra("rem");
+            defaultValue = getIntent().getStringExtra("rem");
             SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
             defaultValue = sharedPref.getString("rem", "0");
         } catch (Exception e) {
 
         }
-        if (rem != null && rem.equals("1")) {
+        if (defaultValue != null && defaultValue.equals("1")) {
             Log.d(TAG, "restore: ");
             user.setText(getIntent().getStringExtra("name"));
             rememberMe.setChecked(true);
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-        if (rem != null && rem.equals("1")) {
+        if (defaultValue != null && defaultValue.equals("1")) {
             Log.d(TAG, "restore: ");
             user.setText(getIntent().getStringExtra("name"));
             rememberMe.setChecked(true);
