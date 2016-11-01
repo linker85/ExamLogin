@@ -43,15 +43,17 @@ public class MainActivity extends AppCompatActivity {
         canLogin   = false;
         String rem = null;
         String defaultValue = null;
+        String name2 = null;
         try {
             defaultValue = getIntent().getStringExtra("rem");
             SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-            defaultValue = sharedPref.getString("rem", "0");
+            name2 = sharedPref.getString("name", "");
         } catch (Exception e) {
 
         }
         if (defaultValue != null && defaultValue.equals("1")) {
             Log.d(TAG, "restore: ");
+            user.setText(name2);
             user.setText(getIntent().getStringExtra("name"));
             rememberMe.setChecked(true);
         } else {
@@ -68,16 +70,19 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onResume: ");
         String rem = null;
         String defaultValue = null;
+        String name2 = null;
         try {
             rem = getIntent().getStringExtra("rem");
             SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
             defaultValue = sharedPref.getString("rem", "0");
+            name2 = sharedPref.getString("name", "");
         } catch (Exception e) {
 
         }
         if (defaultValue != null && defaultValue.equals("1")) {
             Log.d(TAG, "restore: ");
             user.setText(getIntent().getStringExtra("name"));
+            user.setText(name2);
             rememberMe.setChecked(true);
         } else {
             Log.d(TAG, "do not restore: ");
@@ -142,9 +147,11 @@ public class MainActivity extends AppCompatActivity {
                         if (rememberMe.isChecked()) {
                             intent.putExtra("rem", "1");
                             editor.putString("rem", "1");
+                            editor.putString("name", u.getName());
                         } else {
                             intent.putExtra("rem", "0");
                             editor.putString("rem", "0");
+                            editor.putString("name", "");
                         }
                         editor.commit();
                         startActivity(intent);
